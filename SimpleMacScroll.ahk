@@ -24,7 +24,7 @@ Hold down Alt while scrolling to scroll horizontally
 
 ReleaseWait := 300
 ReleaseThreshhold := 30
-MaxRelease := 3
+MaxRelease := 2
 Notches := 0
 Direction := 0
 TimeSpentScrolling = 0
@@ -57,11 +57,17 @@ WheelDown::
 
 Return
 
-MoveOn: 
+MoveOn:
+	TimeSpent = 0 
 	while (ReleaseThreshhold > 0) { 
-		Sleep, 3/Notches
+		Sleep, 1/Notches
 		HoverScroll(direction)
 		ReleaseThreshhold--
+		TimeSpent++
+			; ToolTip % TimeSpent
+		if(TimeSpent > 5)
+			break
+		Notches := Notches/2
 	}
 	Notches := 0
 Return 
