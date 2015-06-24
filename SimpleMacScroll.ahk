@@ -24,7 +24,7 @@ Hold down Alt while scrolling to scroll horizontally
 
 ReleaseWait := 300
 ReleaseThreshhold := 30
-MaxRelease := 1
+MaxRelease := 3
 Notches := 0
 Direction := 0
 TimeSpentScrolling = 0
@@ -41,7 +41,7 @@ WheelUp::
 	HoverScroll(Lines)
 	Notches++	
 	direction := -1
-	ReleaseThreshhold := MaxRelease*Notches
+	ReleaseThreshhold := Notches**MaxRelease
 	SetTimer MoveOn, 100 
 
 Return
@@ -51,7 +51,7 @@ WheelDown::
 	HoverScroll(Lines)
 	direction := 1	
 	Notches++
-	ReleaseThreshhold := MaxRelease*Notches
+	ReleaseThreshhold := Notches**MaxRelease 
 	SetTimer MoveOn, 100 
 
 
@@ -59,7 +59,7 @@ Return
 
 MoveOn: 
 	while (ReleaseThreshhold > 0) { 
-		Sleep, 3
+		Sleep, 3/Notches
 		HoverScroll(direction)
 		ReleaseThreshhold--
 	}
