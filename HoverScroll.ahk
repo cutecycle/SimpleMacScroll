@@ -14,7 +14,7 @@
 
 ;Constants
 HoverScrollMinLines := -1 ;lines per notch
-HoverScrollMaxLines := -20 ;lines per notch
+HoverScrollMaxLines := -10 ;lines per notch
 HoverScrollThreshold := 100 ;Max Miliseconds between two consecutive notches (user defined)
 HoverScrollCurve := 1 ;Acceleration curve: 0 = Straight line (default), 1 = Parabola
 
