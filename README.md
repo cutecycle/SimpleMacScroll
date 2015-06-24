@@ -12,4 +12,4 @@ Currently under testing with notch-mice and the Air 2011 trackpad.
 
 
 # Thanks: 
-* Scoox (HoverScroll)[http://www.autohotkey.com/board/topic/99405-hoverscroll-verticalhorizontal-scroll-without-focus-scrollwheel-acceleration/page-2]
+* Scoox (HoverScroll) http://www.autohotkey.com/board/topic/99405-hoverscroll-verticalhorizontal-scroll-without-focus-scrollwheel-acceleration/page-2 
