@@ -57,17 +57,17 @@ WheelDown::
 
 Return
 
-MoveOn
+MoveOn:
 	TimeSpent = 0 
 	while (ReleaseThreshhold > 0) { 
-		Sleep, 1/Notches
+		Sleep, Notches
 		HoverScroll(direction)
 		ReleaseThreshhold--
 		TimeSpent++
 			; ToolTip % TimeSpent
 		if(TimeSpent > 10)
 			break
-		Notches := Notches/2
+		 Notches := Notches/2
 	}
 	Notches := 0
 Return 
