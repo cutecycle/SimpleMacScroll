@@ -1,5 +1,5 @@
 # SimpleMacScroll
-This is a system-wide, HoverScroll-based Mac style Acceleration and Momentum scrolling for AutoHotKey. Keep in mind that because Windows operates on Wheel events, and the wheel operates in discrete notches, it will not match up to the trackpad perfectly. For wheels there is no such thing as a "Release" event. What it will do, though, is:
+This is a system-wide, HoverScroll-based Mac style Acceleration and Momentum scroll for AutoHotKey. Keep in mind that because Windows operates on Wheel events, and the wheel operates in discrete notches, it will not match up to the trackpad perfectly. For wheels there is no such thing as a "Release" event. What it will do, though, is:
 
 * Work for more than just Chrome windows
 * Reverse your scroll direction
