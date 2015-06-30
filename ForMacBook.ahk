@@ -65,7 +65,7 @@ MoveOn:
 	TimeSpent = 0
      	MouseGetPos,x1,y1
 
-	
+	if(Notches > 1 or Notches2 > 1)
 	while (ReleaseThreshhold > 0) {
 		MouseGetPos,x2,y2 
 		Sleep, 1
