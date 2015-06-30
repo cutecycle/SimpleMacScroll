@@ -14,9 +14,9 @@
 
 ;Constants
 HoverScrollMinLines := -1 ;lines per notch
-HoverScrollMaxLines := -10 ;lines per notch
+HoverScrollMaxLines := -2 ;lines per notc
 HoverScrollThreshold := 100 ;Max Miliseconds between two consecutive notches (user defined)
-HoverScrollCurve := 1 ;Acceleration curve: 0 = Straight line (default), 1 = Parabola
+HoverScrollCurve := 0 ;Acceleration curve: 0 = Straight line (default), 1 = Parabola
 
 ;Determine system frequency in Hz:
 DllCall("QueryPerformanceFrequency", "Int64 *", Frequency)
@@ -402,3 +402,4 @@ ScrollLines_3(MinLines=1, MaxLines=5, Threshold=50, Curve=0)
 }
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
