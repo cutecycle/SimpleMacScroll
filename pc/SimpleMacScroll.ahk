@@ -24,8 +24,9 @@ Hold down Alt while scrolling to scroll horizontally
 
 ReleaseWait := 300
 ReleaseThreshhold := 30
-MaxRelease := 2
+MaxRelease := 3
 Notches := 0
+Notches2 := 0
 Direction := 0
 TimeSpentScrolling = 0
 
@@ -40,9 +41,11 @@ WheelUp::
 	Lines := ScrollLines_3(HoverScrollMinLines, HoverScrollMaxLines, HoverScrollThreshold, HoverScrollCurve)
 	HoverScroll(Lines)
 	Notches++	
+	Notches2 := 0
 	direction := -1
-	ReleaseThreshhold := Notches**MaxRelease
+	ReleaseThreshhold := Notches*MaxRelease
 	SetTimer MoveOn, 100 
+	
 
 Return
 
@@ -50,40 +53,49 @@ WheelDown::
 	Lines := -ScrollLines_3(HoverScrollMinLines, HoverScrollMaxLines, HoverScrollThreshold, HoverScrollCurve)
 	HoverScroll(Lines)
 	direction := 1	
-	Notches++
-	ReleaseThreshhold := Notches**MaxRelease 
+	Notches2++
+	Notches := 0
+	ReleaseThreshhold := Notches2*MaxRelease 
 	SetTimer MoveOn, 100 
-
+	
 
 Return
 
 MoveOn:
-	TimeSpent = 0 
-	while (ReleaseThreshhold > 0) { 
-		Sleep, Notches
-		HoverScroll(direction)
+	TimeSpent = 0
+     	MouseGetPos,x1,y1
+
+	if(Notches > 1 or Notches2 > 1)	
+	while (ReleaseThreshhold > 0) {
+		MouseGetPos,x2,y2 
+		Sleep, 1
+		HoverScroll((direction)*(Notches + Notches2)/4)
 		ReleaseThreshhold--
 		TimeSpent++
-			; ToolTip % TimeSpent
-		if(TimeSpent > 10)
-			break
-		 Notches := Notches/2
+		;ToolTip %  TimeSpent
+		;ToolTip % ReleaseThreshhold ;(Notches + Notches2)
+		;ToolTip % Notches2
+		;if((TimeSpent > (Notches + Notches2)*)) {
+		;	ToolTip % TimeSpent
+		;	break
+		;}
 	}
 	Notches := 0
+	Notches2 := 0
 Return 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;Horizontal scrolling
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;Note: Scrolling direction (left/right) can be inverted by adding a minus sign to Lines.
-!WheelUp::
+WheelLeft::
 	Lines := -ScrollLines_3(HoverScrollMinLines, HoverScrollMaxLines, HoverScrollThreshold, HoverScrollCurve)
 	HoverScroll(Lines, 0) ;0 = horizontal, 1 (or omit) = vertical
 	ToolTip % "<    "
 	SetTimer KillToolTip, -300
 Return
 
-!WheelDown::
+WheelRight::
 	Lines := ScrollLines_3(HoverScrollMinLines, HoverScrollMaxLines, HoverScrollThreshold, HoverScrollCurve)
 	HoverScroll(Lines, 0) ;0 = horizontal, 1 (or omit) = vertical
 	ToolTip % "    >"
@@ -139,3 +151,4 @@ KillToolTip:
 Return
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
