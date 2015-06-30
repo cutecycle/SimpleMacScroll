@@ -10,6 +10,10 @@ This is a system-wide, HoverScroll-based Mac style Acceleration and Momentum scr
 
 Currently under testing with notch-mice and the Air 2011 trackpad.
 
+# Instructions
+1. Set your lines per scroll in Windows mouse options to 1.
+2. If you're on a Mac Trackpad, open ForMacbook.
+3. Otherwise, open the other one. 
 
 # Thanks: 
 * Scoox (HoverScroll) http://www.autohotkey.com/board/topic/99405-hoverscroll-verticalhorizontal-scroll-without-focus-scrollwheel-acceleration/page-2 
