@@ -24,8 +24,9 @@ Hold down Alt while scrolling to scroll horizontally
 
 ReleaseWait := 300
 ReleaseThreshhold := 30
-MaxRelease := 2
+MaxRelease := 1.5
 Notches := 0
+Notches2 := 0
 Direction := 0
 TimeSpentScrolling = 0
 
@@ -40,9 +41,11 @@ WheelUp::
 	Lines := ScrollLines_3(HoverScrollMinLines, HoverScrollMaxLines, HoverScrollThreshold, HoverScrollCurve)
 	HoverScroll(Lines)
 	Notches++	
+	Notches2 := 0
 	direction := -1
-	ReleaseThreshhold := Notches**MaxRelease
+	ReleaseThreshhold := Notches*MaxRelease
 	SetTimer MoveOn, 100 
+	
 
 Return
 
@@ -50,31 +53,38 @@ WheelDown::
 	Lines := -ScrollLines_3(HoverScrollMinLines, HoverScrollMaxLines, HoverScrollThreshold, HoverScrollCurve)
 	HoverScroll(Lines)
 	direction := 1	
-	Notches++
-	ReleaseThreshhold := Notches**MaxRelease 
+	Notches2++
+	Notches := 0
+	ReleaseThreshhold := Notches2*MaxRelease 
 	SetTimer MoveOn, 100 
-
+	
 
 Return
 
 MoveOn:
 	TimeSpent = 0
      	MouseGetPos,x1,y1
+
+	
 	while (ReleaseThreshhold > 0) {
 		MouseGetPos,x2,y2 
-		Sleep, Notches
-		HoverScroll(direction)
+		Sleep, 1
+		HoverScroll((direction))
 		ReleaseThreshhold--
 		TimeSpent++
-			; ToolTip % TimeSpent
-		if((TimeSpent > 10))
+		;ToolTip %  Notches
+		ToolTip % ReleaseThreshhold ;(Notches + Notches2)
+		;ToolTip % Notches2
+		if((TimeSpent > (Notches + Notches2))) {
+			;ToolTip % TimeSpent
 			break
+		}
 
 		;if(((x1<>x2) or (y1<>y2)))
 		;	break
-		 Notches := Notches/2
 	}
 	Notches := 0
+	Notches2 := 0
 Return 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;Horizontal scrolling
@@ -144,4 +154,3 @@ KillToolTip:
 Return
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
