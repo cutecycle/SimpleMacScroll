@@ -24,7 +24,7 @@ Hold down Alt while scrolling to scroll horizontally
 
 ReleaseWait := 300
 ReleaseThreshhold := 30
-MaxRelease := 3
+MaxRelease := 4
 Notches := 0
 Notches2 := 0
 Direction := 0
@@ -67,9 +67,10 @@ MoveOn:
 
 	if(Notches > 1 or Notches2 > 1)	
 	while (ReleaseThreshhold > 0) {
+		beentouched := (GetKeyState("WheelDown", "P") or GetKeyState("MouseUp", "P"))
 		MouseGetPos,x2,y2 
 		Sleep, 1
-		HoverScroll((direction)*(Notches + Notches2)/4)
+		HoverScroll((direction)*(Notches + Notches2)/(TimeSpent))
 		ReleaseThreshhold--
 		TimeSpent++
 		;ToolTip %  TimeSpent
