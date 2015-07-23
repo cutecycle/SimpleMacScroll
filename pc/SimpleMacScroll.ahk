@@ -14,7 +14,6 @@ Hold down Alt while scrolling to scroll horizontally
 
 #NoEnv
 #SingleInstance Force
-
 ;Prevent hotkey limit reached warning (500 is just an arbitrarily high number)
 #MaxHotkeysPerInterval 500
 
@@ -63,17 +62,14 @@ Return
 
 MoveOn:
 	TimeSpent = 0
-     	MouseGetPos,x1,y1
 
-	if(Notches > 1 or Notches2 > 1)	
+	if(Notches > 3 or Notches2 > 3)	
 	while (ReleaseThreshhold > 0) {
-		beentouched := (GetKeyState("WheelDown", "P") or GetKeyState("MouseUp", "P"))
-		MouseGetPos,x2,y2 
 		Sleep, 1
-		HoverScroll((direction)*(Notches + Notches2)/(TimeSpent))
+		HoverScroll((direction)*(Notches + Notches2)/5)
 		ReleaseThreshhold--
-		TimeSpent++
-		;ToolTip %  TimeSpent
+		;TimeSpent++
+	;	;ToolTip %  TimeSpent
 		;ToolTip % ReleaseThreshhold ;(Notches + Notches2)
 		;ToolTip % Notches2
 		;if((TimeSpent > (Notches + Notches2)*)) {
@@ -112,20 +108,20 @@ Return
 ;NOTE: For zooming scrolling more than 1 line per notch can cause target control to scroll vertically as well, so I suggest using a value of 1.
 
 ;Zoom IN
-^WheelUp::
-	Lines := -1
-	HoverScroll(Lines,,1)
-	ToolTip % "IN"
-	SetTimer KillToolTip, -400
-Return
-
-;Zoom OUT
-^WheelDown::
-	Lines := 1
-	HoverScroll(Lines,,1)
-	ToolTip % "OUT"
-	SetTimer KillToolTip, -400
-Return
+;^WheelUp::
+;	Lines := -1
+;	HoverScroll(Lines,,1)
+;	ToolTip % "IN"
+;	SetTimer KillToolTip, -400
+;Return
+;
+;;Zoom OUT
+;^WheelDown::
+;	Lines := 1
+;	HoverScroll(Lines,,1)
+;	ToolTip % "OUT"
+;	SetTimer KillToolTip, -400
+;Return
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;All other modifiers
@@ -152,4 +148,5 @@ KillToolTip:
 Return
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 
